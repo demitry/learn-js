@@ -13,9 +13,12 @@
 
         var browserInfo = "СВЕДЕНЬЯ О БРОУЗЕРЕ:\n";
         for (var propname in navigator) {
-            browserInfo += propname + ": " + navigator[propname] + "\n";
+            browserInfo +=  "<b>" + propname + ":</b> " + navigator[propname] + "\n";
         }
-        alert(browserInfo);
+        //alert(browserInfo);
+        
+        document.write("<pre>" + browserInfo + "</pre>");
+        
     </script>
 </head>
 <body>

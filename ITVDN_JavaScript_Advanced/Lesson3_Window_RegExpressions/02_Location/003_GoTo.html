@@ -9,9 +9,11 @@
 
             document.getElementById("go").onclick = function () {
                 document.location = "http://edu.cbsystematics.com/ru/courses";
-            }
+                // Как-только браузер видит, что document.location изменился,
+                // - он выполняет редирект на этот адрес.
+            };
 
-        }
+        };
 
     </script>
 </head>

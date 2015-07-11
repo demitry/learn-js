@@ -14,18 +14,18 @@
 
             get("startButton").onclick = function () {
                 intervalHandler = setInterval(count, 5);
-            }
+            };
 
             get("stopButton").onclick = function () {
                 // останавливаем таймер, по которому вызывается функция count
                 clearInterval(intervalHandler);
-            }
-        }
+            };
+        };
 
         // пользовательская функция для получения элементов страницы по id
         var get = function (id){
             return document.getElementById(id);
-        }
+        };
     </script>
 </head>
 <body>
