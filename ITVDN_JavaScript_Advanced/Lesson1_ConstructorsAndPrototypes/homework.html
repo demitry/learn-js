@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <script>
+/*
+Задание 1
+Создайте функцию конструктор, которая создает объект со 
+- свойством экземпляра, 
+- свойством функции-конструктора, 
+- с методом экземпляра 
+- и методом функции-конструктора имена
+выберите произвольно.
+*/
+
+    function Car(abrand, aname) {
+            this.brand = abrand;
+            this.name = aname;
+            
+            this.specialBeep = function () {
+                document.write("Be-Beep! Car name is " + this.brand + 
+                        ": " + this.name + "<br /> ");
+            };
+        };
+        
+        // свойство функции конструктора (аналог статических свойств).
+        Car.garanty = "Garanty is 2 years.";
+
+        // Метод функции-конструктора (аналог статическгого метода).
+        Car.Beep = function () {
+            document.write("Be-Beep!"); // this использовать недопустимо.
+        };
+        
+        var myCar = new Car("Volvo", "100 Super");
+        myCar.specialBeep();
+        document.write("For all cars garanty is: " + Car.garanty);
+        Car.Beep();
+
+/*
+Задание 2
+Разработайте функцию-конструктор, которая будет создавать 
+объект Human(человек) создайте массив объектов и реализуйте функцию, 
+которая будет сортировать элементы массива по
+значению свойства Age по возрастанию или по убыванию.
+*/
+
+    function Human (a_name, an_age){
+        this.name = a_name;
+        this.age = an_age;
+        this.profession = undefined;
+    };
+    Human.setProffession = function (prof){
+        this.profession = prof;
+    };
+    
+    Human.prototype.Talk = function (message){
+        println("My name is " + this.name + 
+                ", I am " + this.age + " years old. " + 
+                "Hello, my message is: " + message);
+    };
+    
+    Human.prototype.toString = function (){
+        return "Name: " + this.name + " Age: " + this.age;
+    };
+    
+    var group = new Array();
+    group.push(new Human("Oleg", 12));
+    group.push(new Human("Danil", 34));
+    group.push(new Human("Kolja", 43));
+    group.push(new Human("Stepan", 31));
+    group.push(new Human("Vasily", 12));
+    group.push(new Human("Ivan", 5));
+    group.push(new Human("Vardan", 24));
+    group.push(new Human("Kuzma", 64));
+    group.push(new Human("Jashka", 21));
+    
+    function println(message){
+        document.write(message + "<br />");
+    }
+    
+    function  printArray(array, caption){
+        println("<br /><b>"+ caption + ":</b><br />");
+        for(var j = 0; j < array.length; j ++)
+            println(array[j]);
+    }
+    
+    printArray(group,"Unsorted list");
+    
+    var sortedGroup = group.sort(function(a, b) {
+        return parseInt(a.age) - parseInt(b.age);
+    });
+    
+    printArray(sortedGroup, "Sorted list");
+    
+    for(var n = 0; n < sortedGroup.length; n ++)
+        sortedGroup[n].Talk("Hello");
+/*
+Задание 3
+Разработайте функцию-конструктор, которая будет создавать объект Human(человек) добавьте
+на свое усмотрение свойства и методы в этот объект. Подумайте какие методы и свойства
+следует сделать уровня экземпляра, а какие уровня функции-конструктора.
+*/
+
+/*
+Задание 4
+Создайте пример демонстрирующий назначение метода toString()
+*/
+                
+                
+                
+            </script>
+        </div>
+    </body>
+</html>

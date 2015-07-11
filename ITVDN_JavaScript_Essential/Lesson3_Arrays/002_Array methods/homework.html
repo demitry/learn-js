@@ -1,0 +1,50 @@
+﻿
+<html>
+<head>
+    <title>Homework</title>
+
+    <script type="text/javascript">
+
+        /*
+        Требуется: Создать двумерный массив элементов размерностью 5х5 
+        и заполнить его произвольными целочисленными значениями. 
+        По главной диагонали все числа со знаком (-) заменить на 0,
+        а числа со знаком (+) на число 1. 
+        */
+        // Создание многомерного массива.
+        var table = new Array(5);
+        for (var i = 0; i < table.length; i++) { // В таблице 5 строк
+            table[i] = new Array(5);            // В каждой строке 5 столбцов
+        }
+        var min = -100; var max = 100;
+        // Инициализация массива.
+        document.write("<pre>");
+        for (var row = 0; row < table.length; row++) {
+            for (var col = 0; col < table[row].length; col++) {
+                table[row][col] = Math.floor(Math.random() * (max - min + 1)) + min;
+                document.write(table[row][col]);
+                document.write("\t");
+            }
+            document.write("<br>");
+        }
+        document.write("<br>");
+
+
+        for (var row = 0; row < table.length; row++) {
+            for (var col = 0; col < table[row].length; col++) {
+                if (row == col) {
+                    table[row][col] = (table[row][col] > 0) ? 1 : 0;
+                }
+                document.write(table[row][col]);
+                document.write("\t");
+            }
+            document.write("<br>");
+        }
+
+        document.write("</pre>");
+    </script>
+
+</head>
+<body>
+</body>
+</html>

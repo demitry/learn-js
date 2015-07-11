@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    
+    <script type="text/javascript">
+        /*
+        Создать объект «Менеджер» с помощью блока инициализации, 
+        задать свойства «Имя, Фамилия, возраст …».  
+        Создать объект «Секретарь» с помощью конструктора, 
+        задать свойства «Имя, Фамилия, возраст …». 
+  
+        Создать объект «Документ», в котором определить свойства 
+        «Заголовок, Тело, Футер, Дата». 
+        Создать в объекте вложенный объект – «Приложение». 
+        Создать в объекте «Приложение», вложенные объекты, 
+        «Заголовок, Тело, Футер, Дата». 
+        Создать методы для заполнения и отображения документа. 
+        */
+        var breakl = function () { document.write("<br />"); };
+        var manager = {
+            name: "Vicktor",
+            surname: "Babushkin",
+            age: 25
+        }
+
+        var secreter = new Object();
+        secreter.name = "Nadija";
+        secreter.surname = "Mamaeva";
+        secreter.age = 32;
+
+        for (property in manager) document.write(property + " = " + manager[property] + "<br />");
+        document.write("<br />");
+        for (property in secreter) document.write(property + " = " + secreter[property] + "<br />");
+
+        breakl();
+
+
+        var mydocument = {
+            header: "My Header",
+            body: "My Body",
+            footer: "My Footer",
+            date: "26 November 2005",
+
+            attachment: {
+                header: "My Header",
+                body: "My Body",
+                footer: "My Footer",
+                date: "26 November 2005",
+                showInfo: function () {
+                    if ("header" in this) document.write(this.header); breakl();
+                    if ("body" in this) document.write(this.body); breakl();
+                    if ("footer" in this) document.write(this.footer); breakl();
+                    if ("date" in this) document.write(this.date); breakl();
+                breakl();
+                },
+            },
+
+            
+            showInfo: function () {
+                if ("header" in this) document.write(this.header); breakl();
+                if ("body" in this) document.write(this.body); breakl();
+                if ("footer" in this) document.write(this.footer); breakl();
+                if ("date" in this) document.write(this.date); breakl();
+                if ("attachment" in this) this.attachment.showInfo(); breakl();
+                breakl();
+            },
+
+            setInfo: function (_header, _body, _footer, _date) {
+                this.header = _header;
+                this.body = _body;
+                this.footer = _footer;
+                this.date = _date;
+            }
+        }
+        mydocument.showInfo();
+        breakl();
+        mydocument.setInfo("Second Header", "Second Body", "Second Footer", "21 April 2013");
+        breakl();
+        mydocument.showInfo();
+
+
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>
