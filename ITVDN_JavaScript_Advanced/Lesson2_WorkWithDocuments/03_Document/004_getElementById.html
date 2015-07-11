@@ -7,6 +7,7 @@
         // JavaScript может находиться в отдельных модулях и блоки JavaScript кода не должны появляться в разметке. 
 
         // событие срабатывает после полной загрузки окна.
+        // Выполняется после полной загрузки кода, а не немедленно.
         window.onload = function () {
             // получение элемента со страницы по значению атрибута id
             var paragraph = document.getElementById("output");
@@ -14,7 +15,7 @@
 
             paragraph.innerHTML = "HELLO WORLD !!!";
             hyperlink.innerHTML = "EDUCATION SITE !!!";
-        }
+        };
 
     </script>
 </head>

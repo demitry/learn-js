@@ -5,8 +5,12 @@
     <script type="text/javascript">
 
         function ButtonHandler() {
-            // При вызове метода document.write() после формирования страницы происходит создание нового документа.
-            // Данный метод не следует вызывать в обработчиках событий, что бы не потерять содержимое текущей страницы.
+            // При вызове метода document.write() после формирования страницы 
+            // происходит создание нового документа.
+            // Данный метод не следует вызывать в обработчиках событий, 
+            // что бы не потерять содержимое текущей страницы.
+            
+// !!! НЕ ВЫЗЫВАТЬ document.write после полной отрисовки страницы и в обработчиках!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             document.write("Hello world");
         }
 
@@ -17,12 +21,14 @@
     <!--Использование метода write-->
     <p style="padding: 8px; margin: 8px; color: Green; font-weight: bold; border: solid 1px black;">
         <script type="text/javascript">
-            document.write("hello");
-            document.write(" 1", "-", "2", "-", "3");
+            //все лишние переносы удаляются
+            document.writeln("hello");
+            document.writeln(" 1", "-", "2", "-", "3");
         </script>
     </p>
 
     <!--Использование метода writeln-->
+    <!--используется pre-->
     <pre style="padding: 8px; margin: 8px; color: Green; font-weight: bold; border: solid 1px black;">
 <script type="text/javascript">
     document.writeln("hello");

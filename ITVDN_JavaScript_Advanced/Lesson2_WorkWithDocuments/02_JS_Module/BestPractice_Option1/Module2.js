@@ -9,4 +9,4 @@ Module2.name = "MODULE 2";
 
 Module2.startModule2 = function() {
     document.write(Module2.name + "<br />");
-}
+};
