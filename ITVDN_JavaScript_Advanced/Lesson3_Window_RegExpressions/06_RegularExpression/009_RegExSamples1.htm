@@ -33,7 +33,7 @@
         pattern = /https?:\/\/[\w\d:\.:\?\&]+/g;
         text = "http://www.cbsarea.com или https://www.cbsarea.com blah-blah-blah http://www.google.com:80";
         var res;
-        while ((res = pattern.exec(text)) != null) {
+        while ((res = pattern.exec(text)) !== null) {
             document.write("Найдено " + res + " по индексу " + res.index + "<br />");
         }
     </script>
