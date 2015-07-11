@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!--
+Задание 1
+Разработайте программу секундомер. Секундомер должен иметь три кнопки «Старт», «Стоп»,
+«Сбросить». Секундомер должен выводить время в формате 00:00:00.
+Задание 2
+Разработайте страницу, которая будет выводить сумму двух GET параметров a и b. Например,
+если на страницу заходят по адресу, page.html?a=100&b=200 то в теле страницы должно
+отображаться сообщение «сумма 300»
+Задание 3
+Создайте приложение, которое от пользователя должно принимать строки в формате «10 +
+20» или «50 - 6». При получении такой строки приложение должно отобразить результат
+арифметического действия.
+Задание 4
+Создайте страницу с тремя ссылками: «JS Урок6 1», «JS Урок 2», «JS Урок 3». При нажатии по
+каждой из ссылок должно отображаться окно с описанием соответствующих уроков этого
+курса. Если окно с описание в данный момент отображается, текст ссылки должен быть «JS
+Урок № (открыт)». При повторном нажатии на ссылку окно должно исчезать и текст ссылки
+должен меняться на исходный.
+Задание 5
+Создайте бегущую строку. Пользователь вводит текст в поле ввода и нажимает на кнопку.
+После чего в элементе страниц, отображается бегущая строка с введенным текстом.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script>
+
+            var time = new Date(0);
+
+            var Stopwatch = function () {
+                this.Start = function () {
+                    this.Update();
+                };
+
+                this.Stop = function () {
+
+                };
+
+                this.Reset = function () {
+
+                };
+
+                this.Update = function () {
+                    get("timeOutput").innerHTML = time.getHours() +
+                            ":" + time.getMinutes() +
+                            ":" + time.getSeconds();
+                };
+            };
+            
+            window.onload = function () {
+                var counter = 0;
+                
+                function Count() {
+                    //counter++;
+                    time.
+                    time.setSeconds(counter++);
+                    stopwatch_object.Update();
+                }
+
+                // setInterval - планирование запуска указанной функции с заданным интервалом. Планирование и запуск будут происходить многократно.
+                // запускать функцию Count с интервалом в 1 секунду
+                setInterval(Count, 1000);
+
+                var stopwatch_object = new Stopwatch();
+
+                get("startButton").onclick = function () {
+                    stopwatch_object.Start();
+                };
+
+                get("stopButton").onclick = function () {
+                    stopwatch_object.Stop();
+                };
+
+                get("resetButton").onclick = function () {
+                    stopwatch_object.Reset();
+                };
+            };
+
+            // пользовательская функция для получения элементов страницы по id
+            var get = function (id) {
+                return document.getElementById(id);
+            };
+
+
+        </script>
+    </head>
+    <body>
+        <div>
+            <p id="timeOutput">-</p>
+            <input id="startButton" type="button" value="Start" />
+            <input id="stopButton" type="button" value="Stop" />
+            <input id="resetButton" type="button" value="Reset" />
+        </div>
+    </body>
+</html>
