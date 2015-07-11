@@ -13,13 +13,12 @@
 
             // lastChild - получить последний дочерний узел 
             e.lastChild.style.color = "green";
-        }
+        };
     </script>
 </head>
 <body>
-    <ul id="list">
-        <li>Item 1</li><li>Item 2</li><li>Item 3</li>
-
-    </ul>
+    <p>!!! Если сделать переносы, то все элементы остануться черными</p>
+    <p>Потому-что <em>firstChild</em> - это первый узел, и не важно какого он типа, - текст, комментарий или елемент. </p>
+    <ul id="list"><li>Item 1</li><li>Item 2</li><li>Item 3</li></ul>
 </body>
 </html>

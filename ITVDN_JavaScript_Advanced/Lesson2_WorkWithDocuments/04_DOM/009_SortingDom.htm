@@ -13,15 +13,16 @@
         // ------------------------------------------------------------------------
 
         function sortchildren(e) {
-            if (typeof e == "string") e = document.getElementById(e);
+            if (typeof e === "string") e = document.getElementById(e);
 
             // Преобразовываем дочерние элементы в массив
             var children = [];
-            for (var x = e.firstChild; x != null; x = x.nextSibling)
-                if (x.nodeType == 1 /* Node.ELEMENT_NODE */) children.push(x);
+            for (var x = e.firstChild; x !== null; x = x.nextSibling)
+                if (x.nodeType === /*1*/ Node.ELEMENT_NODE) children.push(x);
 
             // сортировка
             children.sort(function (n, m) { // функция сравнения.
+                // Сортируем по контенту узла.        
                 var s = n.firstChild.data; // текст узла n
                 var t = m.firstChild.data; // текст узла m
                 if (s < t) return -1;      // n перед m
@@ -30,7 +31,10 @@
             });
 
             // Добавляем дочерние элементы обратно в родительский узел.
-            // Когда добавляется узел, который уже существует в документе, он автоматически удаляется со своей старой позиции и вставляется в новую.
+            // Когда добавляется узел, который уже существует в документе, 
+            // он автоматически удаляется со своей старой позиции и вставляется в новую.
+            // ДА, ЭТО НЕМНОГО СТРАННО, НО ЭТО
+            // Потому-что в дереве не может находиться 2 идентичных узла
             for (var i = 0; i < children.length; i++) e.appendChild(children[i]);
         }
     </script>
