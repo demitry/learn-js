@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+
+<head>
+    <title>Evaluate mathimatical</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+</head>
+
+<body>
+    <div>Mathematical</div>
+    <input type="text" name="txtExpression" id="txtExpression" value="" onclick="print()" />
+    <input type="button" name="btnEvaluate" value="Evaluate" onclick="print()" />
+
+    <script>
+        var strExpression = undefined;
+        var index = -1;
+        var operations = Array("+", "-", "*", "/", "%", "==");
+
+        function print() {
+
+            strExpression = document.getElementById("txtExpression").value;
+            for (var i = 0; i < operations.length; i++) {
+                index = strExpression.indexOf(operations[i]);
+                if (index > -1) {
+                    showResult(i);
+                    break;
+                }
+                //
+            }
+            if (index < 0) {
+                //alert("Unknown operation.");
+            }
+        }
+
+
+        function addNewElementWithText(el, text) {
+            var element = document.createElement(el);
+            element.innerHTML = text;
+            document.body.appendChild(element);
+        }
+
+
+        function showResult(index) {
+            var values = strExpression.split(operations[index]);
+            var result = undefined;
+            var operand1 = parseFloat(values[0]);
+            var operand2 = parseFloat(values[1]);
+            switch (operations[index]) {
+            case "+":
+                result = operand1 + operand2;
+                break;
+            case "-":
+                result = operand1 - operand2;
+                break;
+            case "*":
+                result = operand1 * operand2;
+                break;
+            case "/":
+                result = operand1 / operand2;
+                break;
+            case "==":
+                result = operand1 == operand2;
+                break;
+            case "%":
+                result = operand1 % operand2;
+                break;
+
+            default:
+                break;
+            }
+
+            var p = document.createElement("p");
+            addNewElementWithText("p", result);
+
+        }
+    </script>
+
+</body>
+
+</html>

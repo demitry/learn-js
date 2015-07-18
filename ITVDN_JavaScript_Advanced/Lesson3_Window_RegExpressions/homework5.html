@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+Задание 5
+Создайте бегущую строку. Пользователь вводит текст в поле ввода и нажимает на кнопку.
+После чего в элементе страниц, отображается бегущая строка с введенным текстом.
+-->
+
+
+<html>
+
+<head>
+    <title>Insert marquee</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script>
+        function showRibber() {
+            var text = document.getElementById("mytext").value;
+            var strip = document.createElement("marquee");
+            strip.innerHTML = text;
+
+            var container = document.getElementById("div1");
+            container.appendChild(strip);
+            //http://www.w3schools.com/js/js_best_practices.asp
+        }
+    </script>
+
+</head>
+
+<body>
+    <div id="div1">
+        <input id="mytext" type="text">
+        <input type="submit" value="Show Text" onclick="showRibber()">
+    </div>
+
+</body>
+
+</html>

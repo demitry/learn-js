@@ -1,0 +1,90 @@
+<!--
+Задание 4
+Создайте страницу с тремя ссылками: «JS Урок6 1», «JS Урок 2», «JS Урок 3». При нажатии по
+каждой из ссылок должно отображаться окно с описанием соответствующих уроков этого
+курса. Если окно с описание в данный момент отображается, текст ссылки должен быть «JS
+Урок № (открыт)». При повторном нажатии на ссылку окно должно исчезать и текст ссылки
+должен меняться на исходный.-->
+
+
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+
+<head>
+    <title>Lessons</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+</head>
+
+<body>
+    <div>Lessons</div>
+
+</body>
+<script>
+    window.onload = function () {
+        initPage();
+    };
+
+    var lesson1, lesson2, lesson3;
+
+    function createLink(_id, _text) {
+        var a = document.createElement("a");
+        a.innerHTML = _text // <a>INNER_TEXT</a>
+        a.id = _id;
+        a.href = "#";
+        a.onclick = onClick(_id);
+        return a;
+    }
+
+    function onClick(_id) {
+        //alert(_id);
+        //document.getElementById(_id).innerHTML += " open";
+    }
+
+
+    var w;
+
+    function openWindow() {
+        w = window.open("window.html", "Window Name", "width=400,height=400,status=yes,resizable=no");
+    }
+
+    function closeWindow() {
+        w.close();
+    }
+
+
+    function initPage() {
+        lesson1 = document.getElementById("l1");
+        lesson2 = document.getElementById("l2");
+        lesson3 = document.getElementById("l3");
+
+        lesson1.addEventListener("click", function () {
+            lesson1.innerHTML = "Lesson 1 is open";
+            w = window.open("window.html", "Window Name", "width=400,height=400,status=yes,resizable=no");
+        });
+
+        lesson2.addEventListener("click", function () {
+            lesson2.innerHTML = "Lesson 2 is open";
+            w = window.open("window.html", "Window Name", "width=400,height=400,status=yes,resizable=no");
+        });
+
+        lesson3.addEventListener("click", function () {
+            lesson3.innerHTML = "Lesson 3 is open";
+            w = window.open("window.html", "Window Name", "width=400,height=400,status=yes,resizable=no");
+
+        });
+    }
+</script>
+
+<a href="#" id="l1">Lesson 1</a>
+<a href="#" id="l2">Lesson 2</a>
+<a href="#" id="l3">Lesson 3</a>
+
+</html>
