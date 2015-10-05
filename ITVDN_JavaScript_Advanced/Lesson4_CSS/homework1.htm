@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- 
+Задание 1
+Разработайте игру «Угадай значение». Страница загадывает число от 1 до 100. Пользователь в
+поле ввода вводит значение пытаясь угадать загаданное число. Если пользователь не
+угадывает значение страница выводит сообщение с текстом «загаданное значение больше
+введенного вами» или «загаданное значение меньше введенного вами». Подумайте как
+можно применить DHTML в таком приложении.
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Соглашения об именах CSS атрибутов в JavaScript</title>
+    <script type="text/javascript">
+
+        var randomNumber = undefined;
+        var messageOutput = undefined;
+        
+        window.onload = function () {
+            randomNumber = Math.floor((Math.random() * 100) + 1);
+        }
+
+        function testNumber() {
+            var inputNumber = document.getElementById("txtBox").value;
+            messageOutput = "Our number is " + randomNumber +
+                ", your number is " + inputNumber + "; ";
+            if (inputNumber < randomNumber) {
+                messageOutput += "Your number is lesser than our number";
+            } else if (inputNumber === randomNumber) {
+                messageOutput += "Your number is equal. You win!";
+            } else {
+                messageOutput += "Your number is greater than our number";
+            };
+
+            document.getElementById("outputWindow").textContent += messageOutput;
+        }
+
+    </script>
+</head>
+<body>
+    <input id="txtBox" type="text" value="" />
+    <input id="btnTest" type="button" value="Test Number" onclick ="testNumber()"/>
+    <div id="outputWindow"></div> 
+</body>
+</html>

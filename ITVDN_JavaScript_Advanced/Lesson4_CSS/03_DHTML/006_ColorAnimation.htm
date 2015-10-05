@@ -7,6 +7,9 @@
 
     <div id="rect">
     </div>
+    
+    <div id="rect2">
+    </div>
 
     <script type="text/javascript">
         var e = document.getElementById("rect");
@@ -22,6 +25,19 @@
         setInterval(function () {
             e.style.backgroundColor = colors[nextColor++ % colors.length];
         }, 500);
+
+        //rect2
+        var nextColorRed = 0;
+
+        var d = document.getElementById("rect2");
+        d.style.width = "100px";
+        d.style.height = "100px";
+        d.style.border = "solid black 5px";
+
+        setInterval(function () {
+            d.style.backgroundColor = 'rgb(' + [nextColorRed++ % 255, 0, 0].join(',') + ')';
+        }, 1);
+
     </script>
 </body>
 </html>
