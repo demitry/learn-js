@@ -1,0 +1,66 @@
+﻿@model PartyInvites.Models.GuestResponse
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="stylesheet" type="text/css" href="~/Content/Site.css"/>
+    <title>RsvpForm</title>
+</head>
+<body>
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary()
+/*Если ошибок нет, метод Html.ValidationSummary создает скрытый элемент списка в качестве
+заполнителя в форме. MVC делает метку-заполнитель видимой и добавляет сообщения об ошибке,
+определяемые атрибутами валидации. */
+            
+        
+    <p>Your name: @Html.TextBoxFor(x => x.Name) </p>
+        <p>Your email: @Html.TextBoxFor(x => x.Email) </p>
+        <p>Your phone: @Html.TextBoxFor(x => x.Phone) </p>
+        <p>Will you attend?
+            @Html.DropDownListFor(x => x.WillAttend, new[]
+            {
+                new SelectListItem() {Text = "Yes, I'll be there", Value = bool.TrueString},
+                new SelectListItem() {Text = "No, I can't come", Value = bool.FalseString}
+            }, "Choose an option")
+        </p>
+        <input type="submit" value="Submit RSVP"/>
+    }
+</div>
+</body>
+</html>
+
+
+@{
+/*
+
+<form action="/Home/RsvpForm" method="post">            
+            <p>Your name: <input id="Name" name="Name" type="text" value="" /> </p>
+            <p>Your email: <input id="Email" name="Email" type="text" value="" /> </p>
+            <p>Your phone: <input id="Phone" name="Phone" type="text" value="" /> </p>
+            <p>Will you attend?
+                <select id="WillAttend" name="WillAttend"><option value="">Choose an option</option>
+                    <option value="True">Yes, I&#39;ll be there</option>
+                    <option value="False">No, I can&#39;t come</option>
+                </select>
+            </p>
+            <input type="submit" value="Submit RSVP" />
+*/
+
+
+    /*
+     Вы можете быть удивлены тем фактом, что входные данные теряются, когда
+    представление снова обрабатывается. Если это так, то вы, вероятно,
+    разрабатывали приложения при помощи ASP.NET Web Forms, который
+    автоматически сохраняет данные в этой ситуации. Мы покажем вам, как
+    добиться такого же результата с MVC в ближайшее время
+     */
+}

@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+</body>
+
+
+    <script type="text/javascript">
+        var customer = {
+            name: "Tom Smith",
+            speak: (function () {
+                return "My name is " + this.name;
+            }),
+            address: {
+                street: '123 Main St',
+                city: "Pittsburg",
+                state: "PA"
+            }
+        };
+
+        document.write(customer.speak() + "<br />");
+        document.write(customer.name + " lives at " + customer.address.city + " " + customer.address.street + "<br />");
+
+        customer.address.country = "US";
+        document.write(customer.address.country + "<br />");
+
+
+        function Person(name, street) {
+            this.name = name;
+            this.street = street;
+
+            this.info = function () {
+                return "My name is " + this.name;
+            }
+        }
+
+        var bobSmith = new Person("Bob Smith", "21 Pek St");
+        document.write(bobSmith.info() + "<br />");
+
+
+        if ((bobSmith instanceof Person)) {
+            document.write("Bob Smith is a Person" + "<br />");
+        };
+        document.write("Bob Smith is a Person: " + (bobSmith instanceof Person) + "<br />"); //comment this
+
+        function changeName(person) {
+            person.name = "Sue Smith";
+        }
+
+        changeName(bobSmith);
+
+        document.write("Bob became " + bobSmith.name + "<br />");
+
+
+        var person1 = new Person("Paul", "123 Main St");
+        var person2 = new Person("Paul", "123 Main St");
+        document.write("Are they equal:  " + (person1 === person2) + "<br /");
+        document.write("Are their names equal:  " + (person1.name === person2.name) + "<br />");
+
+
+        
+</script>
+
+
+</html>
