@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace LanguageFeatures.Models
 {
@@ -21,7 +22,8 @@ Product в ShoppingCart и возвращает сумму свойства Prod
 общую стоимость объектов Product, перечисленных любым IEnumerable<Product>, который
 включает в себя экземпляры ShoppingCart, а также массивы объектов Product
          */
-        public static decimal TotalPrices(this /*ShoppingCart*/IEnumerable<Product> cartParam)
+
+        public static decimal TotalPrices(this /*ShoppingCart*/ IEnumerable<Product> cartParam)
         {
             decimal total = 0;
             foreach (Product prod in cartParam)
@@ -31,6 +33,7 @@ Product в ShoppingCart и возвращает сумму свойства Prod
             return total;
         }
 
+        /*
         public static IEnumerable<Product> FilterByCategory(
             this IEnumerable<Product> productEnum, string categoryParam)
         {
@@ -42,6 +45,38 @@ Product в ShoppingCart и возвращает сумму свойства Prod
             //    }
             //}
             return productEnum.Where(prod => prod.Category == categoryParam);
+        }
+        */
+
+
+        /*
+         * Мы использовали Func в качестве фильтрующего параметра, это обозначает, что нам не нужно
+определять делегат в качестве типа. Делегат принимает параметр Product и возвращает значение
+bool, которое будет true, если этот объект Product должны быть включен в результат.
+         */
+
+        public static IEnumerable<Product> FilterByCategory(
+            this IEnumerable<Product> productEnum, string categoryParam)
+        {
+            foreach (Product prod in productEnum)
+            {
+                if (prod.Category == categoryParam)
+                {
+                    yield return prod;
+                }
+            }
+        }
+
+        public static IEnumerable<Product> Filter(
+            this IEnumerable<Product> productEnum, Func<Product, bool> selectorParam)
+        {
+            foreach (Product prod in productEnum)
+            {
+                if (selectorParam(prod))
+                {
+                    yield return prod;
+                }
+            }
         }
     }
 }
