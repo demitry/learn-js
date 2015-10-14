@@ -44,7 +44,21 @@ namespace EssentialTools.Infrastructure
         private void AddBindings()
         {
             kernel.Bind<IValueCalculator>().To<LinqValueCalculator>();
-            kernel.Bind<IDiscountHelper>().To<DefaultDiscountHelper>();
+            //kernel.Bind<IDiscountHelper>().To<DefaultDiscountHelper>();
+
+            /*Когда мы привязываем конкретный класс к типу при помощи Ninject, мы можем использовать метод
+                WithPropertyValue для установки значения свойства DiscountSize в классе     */
+            kernel.Bind<IDiscountHelper>().To<DefaultDiscountHelper>().WithPropertyValue("DiscountSize", 50M);
+
+            /*Чтобы связать этот класс, используя Ninject, мы указываем значение параметра конструктора при
+                помощи метода WithConstructorArgument*/
+            kernel.Bind<IDiscountHelper>().To<DefaultDiscountHelper>().WithConstructorArgument("discountParam", 50M);
+
+            /*Новая связка указывает, что если класс FlexibleDiscountHelper должен использоваться в качестве
+                реализации интерфейса IDiscountHelper, тогда Ninject будет внедрять реализацию в объект
+                LinqValueCalculator*/
+            kernel.Bind<IDiscountHelper>().To<FlexibleDiscountHelper>().WhenInjectedInto<LinqValueCalculator>();
+
         }
     }
 }
