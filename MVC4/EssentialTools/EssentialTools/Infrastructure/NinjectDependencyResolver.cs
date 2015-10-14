@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http.Dependencies;
 using Ninject;
 using Ninject.Parameters;
 using Ninject.Syntax;
 using EssentialTools.Models;
+using System.Web.Mvc;
 
 namespace EssentialTools.Infrastructure
 {
@@ -19,9 +21,9 @@ namespace EssentialTools.Infrastructure
     мы используем методы Bind и To, чтобы установить связь между интерфейсом IValueCalculator и
     классом LinqValueCalculator.    */
 
-    public class NinjectDependencyResolver
+    public class NinjectDependencyResolver : System.Web.Mvc.IDependencyResolver
     {
-        private readonly IKernel kernel;
+        private IKernel kernel;
 
         public NinjectDependencyResolver()
         {

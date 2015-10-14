@@ -22,38 +22,46 @@ namespace EssentialTools.Controllers
             new Product {Name = "Corner flag", Category = "Soccer", Price = 34.95M}
         };
 
+        /*Основное изменение, которое мы здесь сделали, заключается в том, что мы добавили конструктор,
+        который принимает реализацию интерфейса IValueCalculator. Мы не указали, с какой реализацией
+        мы хотим работать, и мы добавили переменную экземпляра calc, которую мы можем использовать
+        для обращения к IValueCalculator, который мы получаем в конструктор через класс контроллера.
+        Другое изменение, которые мы сделали, заключается в том, чтобы удалить любые упоминания о
+        Ninject коде или классе LinqValueCalculator: наконец, мы разбили сильную связь между
+        HomeController и классом LinqValueCalculator.   */
+        private IValueCalculator calc;
+        public HomeController(IValueCalculator calcParam)
+        {
+            calc = calcParam;
+        }
+
         public ActionResult Index()
         {
             //WAS:   LinqValueCalculator calc = new LinqValueCalculator();
             
             /* C# требует от нас указать класс реализации для
-интерфейса при создании экземпляра, что достаточно справедливо, ведь ему необходимо знать,
-какой именно класс реализации мы хотим использовать. Это обозначает, что у нас до сих пор есть
-проблема*/
+                интерфейса при создании экземпляра, что достаточно справедливо, ведь ему необходимо знать,
+                какой именно класс реализации мы хотим использовать. Это обозначает, что у нас до сих пор есть
+                проблема*/
 
             /*Мы хотим использовать Ninject, чтобы достичь того этапа, когда мы указываем, что мы хотим
-создать экземпляр реализации интерфейса IValueCalculator, но детали о том, какая требуется
-реализация, не являлись бы частью кода в контроллере Home*/
-
-
+                создать экземпляр реализации интерфейса IValueCalculator, но детали о том, какая требуется
+                реализация, не являлись бы частью кода в контроллере Home*/
 
             /* Первый этап заключается в подготовке Ninject для использования. Нам нужно создать экземпляр
                 Ninject ядра – это объект, который мы будем использовать для связи с Ninject и запросом реализаций
                 интерфейса. Вот выражение из листинга, которое создает ядро:        */
-            IKernel ninjectKernel = new StandardKernel();
+            //IKernel ninjectKernel = new StandardKernel();
 
             /* Нам нужно создать реализацию интерфейса Ninject.IKernel, что мы делаем, создав новый
                 экземпляр класса StandardKernel. Это позволит нам выполнить второй этап, который заключается в
                 создании связи между интерфейсами в нашем приложении и реализациями классов, с которыми мы
                 хотим работать. Вот выражение из листинга, которое это делает:      */
-            ninjectKernel.Bind<IValueCalculator>().To<LinqValueCalculator>();
+            //ninjectKernel.Bind<IValueCalculator>().To<LinqValueCalculator>();
 
             /* Последний этап заключается в реальном использовании Ninject, 
                 что мы делаем при помощи метода Get:*/
-            IValueCalculator calc = ninjectKernel.Get<IValueCalculator>();
-
-
-
+            //IValueCalculator calc = ninjectKernel.Get<IValueCalculator>();
 
             ShoppingCart cart = new ShoppingCart(calc) {Products = products};
             decimal totalValue = cart.CalculateProductTotal();
